@@ -4,12 +4,12 @@ app.use(express.json());
 
 
 app.post("/bfhl", (req, res) => {
-  if(!req.body)
+  if(!req.body || !req.body.data)
   {
     res.send("Data Required");
     return;
   }
-  const obj = req.body;
+  const obj = req.body.data;
   const getData = getObj(obj);
   res.status(200).send(getData);
  
