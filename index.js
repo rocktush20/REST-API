@@ -26,12 +26,11 @@ function getObj(dataArr)
   for (let i = 0 ; i < dataArr.length; i++) {
    
     let data = dataArr[i];
-    console.log(data);
-    if(data[0] >= 'a' && data[0] <= 'z')
+    if((data[0] >= 'a' && data[0]) <= 'z' || (data[0] >= 'A' && data[0] <= 'Z'))
     {
       aplhabets.push(data.toUpperCase());
     }
-    else
+    else 
     {
       arr.push(parseInt(data));
     }
@@ -51,6 +50,7 @@ function makeArrays(even_numbers,odd_numbers,arr)
 
   for(let i = 0 ; i < arr.length; i++)
   {
+    console.log(arr[i]);
     if(arr[i] % 2 != 0)
     {
       odd_numbers.push(arr[i]);
