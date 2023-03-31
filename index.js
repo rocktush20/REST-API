@@ -2,22 +2,20 @@ const express = require("express");
 const app = express();
 app.use(express.json());
 
-app.get("/",(req,res)=>{
-    res.send("Ok");
-})
 app.post("/bfhl", (req, res) => {
   if(!req.body || !req.body.data)
   {
     res.send("Data Required");
     return;
   }
-  const obj = req.body.data;
-  const getData = getObj(obj);
+  const dataArr = req.body.data;
+  console.log(dataArr);
+  const getData = getObj(dataArr);
   res.status(200).send(getData);
  
 });
 
-function getObj(obj)
+function getObj(dataArr)
 {
   const is_success = true;
   const user_id = "Tushar_Harwani_02122001";
@@ -25,12 +23,13 @@ function getObj(obj)
   const roll_number = "12014725";
   let arr = [];
   let aplhabets = [];
-  for (const key in obj) {
+  for (let i = 0 ; i < dataArr.length; i++) {
    
-    let data = obj[key];
+    let data = dataArr[i];
+    console.log(data);
     if(data[0] >= 'a' && data[0] <= 'z')
     {
-      aplhabets.push(toUpperCase(data));
+      aplhabets.push(data.toUpperCase());
     }
     else
     {
@@ -38,8 +37,8 @@ function getObj(obj)
     }
   }
 
-  const odd_numbers = [];
-  const even_numbers = [];
+  let odd_numbers = [];
+  let even_numbers = [];
   makeArrays(even_numbers,odd_numbers,arr);
   const objRet = {
     is_success,user_id,email,roll_number,odd_numbers,even_numbers,aplhabets
@@ -60,7 +59,7 @@ function makeArrays(even_numbers,odd_numbers,arr)
     {
       even_numbers.push(arr[i]);
     }
-  }
+}
 }
 
 const PORT = 4000;
