@@ -2,7 +2,9 @@ const express = require("express");
 const app = express();
 app.use(express.json());
 
-
+app.get("/",(req,res)=>{
+    res.send("Ok");
+})
 app.post("/bfhl", (req, res) => {
   if(!req.body || !req.body.data)
   {
@@ -62,4 +64,4 @@ function makeArrays(even_numbers,odd_numbers,arr)
 }
 
 const PORT = 4000;
-app.listen(console.log(`Server is listening on PORT : ${PORT}`));
+app.listen(PORT,()=>{console.log(`Server is listening on PORT : ${PORT}`)});
